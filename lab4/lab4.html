@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>lab4</title>
+</head>
+
+<body>
+    <script>
+        let random_num = Math.floor(Math.random() * 101);       
+        let guess_limit = 7;
+        let guessHistory = [];
+
+        function playgame() {
+            let win = false;
+            let cancel = false;
+            let i = 0;
+
+            while (i < guess_limit) {
+                let guess = prompt(`Guess a number between 1 and 100. You have ${guess_limit - i} guesses left.`);
+
+                if (guess === null) {
+                    cancel = true;
+                    break;
+                }
+
+                guess = parseInt(guess);
+
+                if (isNaN(guess) || guess <= 0 || guess > 100) {
+                    alert("The number is not valid. Enter a valid number.");
+                    continue;
+                }
+
+                guessHistory.push(guess);
+
+                if (guess === random_num) {
+                    win = true;
+                    i++;
+                    break;
+                } else if (guess < random_num) {
+                    alert((random_num - guess) > 50 ? "Too low!" : "A little low");
+                    i++;
+                } else {
+                    alert((guess - random_num) > 50 ? "Too high!" : "A little high");
+                    i++;
+                }
+            }
+
+            let resultMessage;
+
+            if (cancel) {
+                resultMessage = "You cancelled the game.";
+            } else if (win) {
+                resultMessage = "You won!";
+            } else {
+                resultMessage = `You lost! The number was ${random_num}.`;
+            }
+
+            buildresultspage(i, resultMessage, guessHistory);
+        }
+
+        function buildresultspage(attempts, resultMessage, guessHistory) {
+            let performance = "";
+
+            if (resultMessage === "You won!") {
+                switch (attempts) {
+                    case 1:
+                        performance = "Exceptional performance";
+                        break;
+                    case 2:
+                    case 3:
+                        performance = "Very good";
+                        break;
+                    case 4:
+                    case 5:
+                        performance = "Decent effort";
+                        break;
+                    case 6:
+                    case 7:
+                        performance = "Last-minute success";
+                        break;
+                    default:
+                        performance = "";
+                }
+            } else {
+                performance = "Better luck next time!";
+            }
+
+            document.open();
+            document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Over</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            background-color: #0c1b33;
+            color: #ffffff;
+        }
+        .container {
+            background-color: #162447;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            max-width: 90%;
+        }
+        h1 {
+            color: #32ff7e;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .result {
+            font-size: 1.2em;
+            color: #c2fbd7;
+            margin-bottom: 10px;
+        }
+        .guesses {
+            font-size: 1em;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>${resultMessage}</h1>
+        ${resultMessage === "You won!" ? `<div class="result">Congratulations! You guessed the number!</div>` : ""}
+        <div class="result">You used ${attempts} guess${attempts === 1 ? '' : 'es'}.</div>
+        <div class="result">${performance}</div>
+        <div class="guesses">Your guesses: ${guessHistory.join(", ")}</div>
+    </div>
+</body>
+</html>
+            `);
+            document.close();
+        }
+
+        // Start the game when the page loads
+        playgame();
+    </script>
+</body>
+</html>

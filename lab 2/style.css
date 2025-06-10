@@ -1,0 +1,100 @@
+body {
+  background-image: url("images/gray-texture_1253-243.avif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 12px;
+}
+
+/* Header styling */
+header {
+  position: relative;
+  background:-moz-linear-gradient(left, #003366 70%, #336699 100%);
+  background: -webkit-gradient(linear, left, right, color-stop(70%,#003366) color-stop(100%,#336699));
+  background: linear-gradient(90deg, #003366 70%,#336699 100%);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  color: white;
+  text-align: center;
+}
+
+/* Text styles */
+header h1 {
+  font-size: 2em;
+  text-shadow: 1px 1px 2px black;
+}
+
+.email {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* Navigation */
+nav a {
+  color: #cce6ff;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+/*Makes the nav links white and underlined*/
+nav a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* uOttawa logo */
+.uottawa-logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: 12px solid darkred;
+  height: 60px;
+}
+
+
+/* Profile picture */
+.profile-img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 60px;
+  padding: 12px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+
+section {
+  border-radius: 15px;
+  border : 1px solid black;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+  section h1, section h2{
+    color: darkred;
+    margin: 10px;
+  }
+
+  section body {
+    margin: 10px;
+  }
+
+  section content{
+    margin: 10px;
+  }
+
+table {
+  width: 80%;
+  margin: 10px;
+  height: auto;
+}

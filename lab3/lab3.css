@@ -1,0 +1,44 @@
+h1{
+    -webkit-text-stroke: 1px black;
+    -webkit-text-fill-color: white;
+}
+
+.description{
+column-count: 2;
+column-gap: 40px;
+}
+
+.calculator-icon {
+width: 100px;
+position: absolute;
+top: 20px;
+left: 20px;
+animation: floatAround 20s ease-in-out infinite;
+}
+
+@keyframes floatAround {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+
+  25% {
+    transform: translate(100px, 50px);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(200px, -30px);
+    opacity: 0.5;
+  }
+
+  75% {
+    transform: translate(150px, 100px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+}

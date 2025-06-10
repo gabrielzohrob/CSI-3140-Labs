@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LAB 1</title>
+        <a href = "https://www.uottawa.ca/en">
+             <img src="images/uottawa logo.png" alt="uottawa logo">
+        </a>
+        <h1>Michael Massaad and Gabriel Zohrob</h1>
+        <img src="images/placeholder image.png" alt="Profile Picture"><br>
+
+        Email: <a href="mailto:email@address.com">gzohr096@uottawa.ca</a>
+
+
+    </head>
+
+    <body>
+        <p><a href = "#about">About</a> | <a href = "#skills">Skills</a> | <a href = "#feedback">Feedback</a> </p>
+
+        <p><h2 id = "about">About me</h2></p>
+        <p> My name is Gabriel and I am a third year computer science student at the university of Ottawa. <mark> I enjoy this course!</mark></p>
+        
+        <p><h2 id = "skills">Skills</h2></p>
+        <table border = "1">
+            <thead>
+                <tr>
+                    <th>Skills</th>
+                    <th>Level</th>
+                    <th>Proficiency</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>9</td>
+                    <td><meter min = "0" value = "9" max = "10"></meter></td>
+                </tr>
+
+                <tr>
+                    <td>CSS</td>
+                    <td>8</td>
+                    <td><meter min = "0" value = "8" max = "10"></meter></td>
+                </tr>
+
+                <tr>
+                    <td>JavaScript</td>
+                    <td>6</td>
+                    <td><meter min = "0" value = "6" max = "10"></meter></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><h2>Preferences Form</h2></p>
+        <p>Preferred work enviroment:<br>
+            <label><input type = "radio" name = "preference">Remote</label><br>
+            <label><input type = "radio" name = "preference">Hybrid</label><br>
+            <label><input type = "radio" name = "preference">In-person</label>
+        </p>
+
+        <p>Interests:<br>
+            <label><input type = "checkbox" name = "interests">AI</label><br>
+            <label><input type = "checkbox" name = "interests">Web Developpement</label><br>
+            <label><input type = "checkbox" name = "interests">Cybersecurity</label><br>
+        </p>
+
+        <p><label>Favourite Programming Language:
+            <input type = "text" id = "txtlist"
+                placeholder="Select a Language" list = "Favourite Programming Language"/>
+            <datalist id = "Favourite Programming Language">
+                <option value = "Python">
+                <option value = "Java">
+                <option value = "CSS">
+                <option value = "SQL">
+                <option value = "HTML">
+            </datalist>
+        </label></p>
+
+        <form>
+            <p><input type = "text" id = "textblock"
+                placeholder="Enter your name" autocomplete="on">
+            </p>
+        </form>
+
+        <p><label>Select a number (1-100):
+            <input type = "range" min = "0" max = "100" step = "1">
+        </label></p>
+
+        <p><h2 id = "feedback">Feedback</h2><br>
+                    <details>
+                        <summary>Why did you choose this field ?</summary>
+                        love building on the web and enjoy solving real world problems through technology.
+                    </details> 
+        </p>
+    </body>
+</html>
