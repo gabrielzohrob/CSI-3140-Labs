@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Blog post lab 5</title>
+        <link rel = "stylesheet" href = "style.css">
+        <scrip src = "script.js"></script>
+    </head>
+
+    <body>
+        <h1 style="font-size: 300%; text-align: center;">My Simple Blog</h1>
+        <p style="font-size: 200%; text-align: center;">A client-side blog powered by JavaScript</p>
+
+        <br>
+        <h2 style="font-size: 300%; margin-left: 20px;">Latest Post</h2>
+
+        <div class="content-container">
+        <div id="latestpost"></div>
+
+        <form id="postform" action="#">
+            <h2>Create a New Post</h2>
+            <label>Title<br><input type="text" id="posttitle"></label><br><br>
+            <label>Author<br><input type="text" id="postauthor"></label><br><br>
+            <label>Content<br><textarea id="postcontent" rows="4"></textarea></label><br><br>
+            <input type="button" id="createpost" value="Create Post">
+        </form>
+        </div>
+
+    </body>
+</html>

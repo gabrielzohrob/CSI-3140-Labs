@@ -7,15 +7,15 @@
 
 <body>
     <script>
-        let random_num = Math.floor(Math.random() * 101);       
+        let random_num = Math.floor(Math.random() * 100+1);       
         let guess_limit = 7;
         let guessHistory = [];
 
         function playgame() {
             let win = false;
             let cancel = false;
-            let i = 0;
 
+            let i = 0;
             while (i < guess_limit) {
                 let guess = prompt(`Guess a number between 1 and 100. You have ${guess_limit - i} guesses left.`);
 
