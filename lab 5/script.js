@@ -1,69 +1,81 @@
 var blogPosts = [];
 
-function displayPosts() {
-  const postsContainer = document.getElementById("latestpost");
+function displayPosts(){
+    var latestPostsD =  document.getElementById('latestpost');
+    latestPostsD.innerHTML = "";
 
-  postsContainer.innerHTML = "";
+    for(var i = 0; i < blogPosts.length; i++){
+        var postDiv = document.createElement('div');
+        postDiv.style.backgroundColor = "white";
+        postDiv.style.borderRadius = "10px";
+        postDiv.style.padding = "20px";
+        postDiv.style.marginBottom = "20px";
+        postDiv.style.boxShadow = "0 2px 8px rgba(0,0,0,0.05)";
 
-    for(post in blogPosts){
-    const postDiv = document.createElement("div");
-    postDiv.style.backgroundColor = "#fff";
-    postDiv.style.padding = "15px";
-    postDiv.style.marginBottom = "15px";
-    postDiv.style.borderRadius = "10px";
-    postDiv.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
+        var titleEl = document.createElement('h3');
+        titleEl.textContent = post.title;
+        titleEl.style.color = "#4f46e5";
+        titleEl.style.cursor = "pointer";
+        titleEl.addEventListener('click', () => {
+            alert(post.content);
+        });
 
-    const titleEl = document.createElement("h3");
-    titleEl.textContent = post.title;
-    titleEl.style.color = "#4f46e5";
-    titleEl.style.cursor = "pointer";
-    titleEl.addEventListener("click", () => {
-      alert(post.content);
-    });
+        const meta = document.createElement('p');
+        meta.style.color = "#777";
+        meta.style.fontSize = "0.9em";
+        meta.style.marginBottom = "10px";
 
-    const metaEl = document.createElement("p");
-    metaEl.textContent = `By ${post.author} on ${post.date.toLocaleDateString()}`;
-    metaEl.style.color = "#555";
-    metaEl.style.fontStyle = "italic";
-    metaEl.style.marginTop = "-10px";
+        meta.textContent = `By ${post.author} on ${post.date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        })}`;
 
-    const contentEl = document.createElement("p");
-    contentEl.textContent = post.content.substring(0, 100) + "...";
-    contentEl.style.color = "#333";
+        const preview = document.createElement('p');
+        preview.textContent = post.content.substring(0, 100) + "...";
 
-    postDiv.appendChild(titleEl);
-    postDiv.appendChild(metaEl);
-    postDiv.appendChild(contentEl);
-    postsContainer.appendChild(postDiv);
-  });
+        // Add elements to post container
+        postDiv.appendChild(titleEl);
+        postDiv.appendChild(meta);
+        postDiv.appendChild(preview);
+
+        // Add post to main container
+        latestPostsD.appendChild(postDiv);
+
+        document.getElementById("createpost").addEventListener("click", handleAddPost, false);
+
+
+    }
 }
 
-function handleAddPost(event) {
-  event.preventDefault(); // Prevent form reload
+function handleAddPost(event){
+    var titleInput = document.getElementById("posttitle");
+    var authorInput = document.getElementById("postauthor");
+    var contentInput = document.getElementById("postcontent");
 
-  const title = document.getElementById("posttitle").value.trim();
-  const author = document.getElementById("postauthor").value.trim();
-  const content = document.getElementById("postcontent").value.trim();
+    var title = titleInput.value.trim();
+    var author = authorInput.value.trim();
+    var content = contentInput.value.trim();
 
-  if (!title || !author || !content) {
-    alert("Please fill in all fields.");
-    return;
-  }
+    if (!title || !author || !content) {
+        alert("Please fill in all fields.");
+        return;
+    }
 
-  const newPost = {
-    title,
-    author,
-    content,
-    date: new Date()
-  };
+    var newPost = {
+        title: title,
+        author: author,
+        content: content,
+        date: new Date()
+    };
 
-  blogPosts.push(newPost);
+    blogPosts.unshift(newPost);
+    displayPosts();
+    titleInput.value = "";
+    authorInput.value = "";
+    contentInput.value = "";
 
-  displayPosts();
-
-  document.getElementById("posttitle").value = "";
-  document.getElementById("postauthor").value = "";
-  document.getElementById("postcontent").value = "";
 }
 
-document.addEventListener("load", );
+
+window.addEventListener('load', displayPosts, false);
