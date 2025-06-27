@@ -1,81 +1,90 @@
-var blogPosts = [];
+// Global blog posts array (starts empty)
+var blogPosts = [
+    {
+    title: "Learning JavaScript",
+    author: "Sarah Lee",
+    content: "Today I learned how to use JavaScript to dynamically update a web page. I used document.createElement, appendChild, and added event listeners to make interactive elements.",
+    date: new Date("2025-06-23")
+  }, 
+  {
+    title: "Styling with CSS",
+    author: "Jason Wu",
+    content: "CSS makes everything look better! I added colors, shadows, padding, and flexbox layout to make my blog look clean and professional.",
+    date: new Date("2025-06-24")
+  }
+];
 
-function displayPosts(){
-    var latestPostsD =  document.getElementById('latestpost');
-    latestPostsD.innerHTML = "";
+// Function to display all blog posts
+function displayPosts() {
+  var latestPostsD = document.getElementById('latestpost');
+  latestPostsD.innerHTML = "";
 
-    for(var i = 0; i < blogPosts.length; i++){
-        var postDiv = document.createElement('div');
-        postDiv.style.backgroundColor = "white";
-        postDiv.style.borderRadius = "10px";
-        postDiv.style.padding = "20px";
-        postDiv.style.marginBottom = "20px";
-        postDiv.style.boxShadow = "0 2px 8px rgba(0,0,0,0.05)";
+  for (var i = 0; i < blogPosts.length; i++) {
+    var post = blogPosts[i];
 
-        var titleEl = document.createElement('h3');
-        titleEl.textContent = post.title;
-        titleEl.style.color = "#4f46e5";
-        titleEl.style.cursor = "pointer";
-        titleEl.addEventListener('click', () => {
-            alert(post.content);
-        });
+    var postDiv = document.createElement('div');
 
-        const meta = document.createElement('p');
-        meta.style.color = "#777";
-        meta.style.fontSize = "0.9em";
-        meta.style.marginBottom = "10px";
+    var titleEl = document.createElement('h3');
+    titleEl.textContent = post.title;
+    titleEl.addEventListener('click', (function(content) {
+      return function() {
+        alert(content);
+      };
+    })(post.content));
 
-        meta.textContent = `By ${post.author} on ${post.date.toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        })}`;
+    var meta = document.createElement('p');
+    meta.className = 'meta';
+    meta.textContent = `By ${post.author} on ${post.date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    })}`;
 
-        const preview = document.createElement('p');
-        preview.textContent = post.content.substring(0, 100) + "...";
+    var preview = document.createElement('p');
+    preview.className = 'content';
+    preview.textContent = post.content.substring(0, 100) + "...";
 
-        // Add elements to post container
-        postDiv.appendChild(titleEl);
-        postDiv.appendChild(meta);
-        postDiv.appendChild(preview);
-
-        // Add post to main container
-        latestPostsD.appendChild(postDiv);
-
-        document.getElementById("createpost").addEventListener("click", handleAddPost, false);
-
-
-    }
+    postDiv.appendChild(titleEl);
+    postDiv.appendChild(meta);
+    postDiv.appendChild(preview);
+    latestPostsD.appendChild(postDiv);
+  }
 }
 
-function handleAddPost(event){
-    var titleInput = document.getElementById("posttitle");
-    var authorInput = document.getElementById("postauthor");
-    var contentInput = document.getElementById("postcontent");
+// Function to handle form submission
+function handleAddPost(event) {
+  event.preventDefault();
 
-    var title = titleInput.value.trim();
-    var author = authorInput.value.trim();
-    var content = contentInput.value.trim();
+  var titleInput = document.getElementById("posttitle");
+  var authorInput = document.getElementById("postauthor");
+  var contentInput = document.getElementById("postcontent");
 
-    if (!title || !author || !content) {
-        alert("Please fill in all fields.");
-        return;
-    }
+  var title = titleInput.value.trim();
+  var author = authorInput.value.trim();
+  var content = contentInput.value.trim();
 
-    var newPost = {
-        title: title,
-        author: author,
-        content: content,
-        date: new Date()
-    };
+  if (!title || !author || !content) {
+    alert("Please fill in all fields.");
+    return;
+  }
 
-    blogPosts.unshift(newPost);
-    displayPosts();
-    titleInput.value = "";
-    authorInput.value = "";
-    contentInput.value = "";
+  var newPost = {
+    title: title,
+    author: author,
+    content: content,
+    date: new Date()
+  };
 
+  blogPosts.unshift(newPost);
+  displayPosts();
+
+  titleInput.value = "";
+  authorInput.value = "";
+  contentInput.value = "";
 }
 
-
-window.addEventListener('load', displayPosts, false);
+// Set up event listener when the page loads
+window.addEventListener('load', function () {
+  displayPosts(); // shows nothing at first
+  document.getElementById("createpost").addEventListener("click", handleAddPost);
+});
