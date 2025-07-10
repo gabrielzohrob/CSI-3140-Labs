@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Michael and Gabriel Shape Creator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+<div class="container">
+    <div class = "canvas">
+        <h2>Interactive Shape Creator</h2>
+        <canvas id="canvasSpace" width="400" height="300"></canvas>
+
+        <input id ="loadButton" type = "button" value = "Load Initial Shapes from XML">
+    </div>
+    <div class = "form">
+        <h3>Create a New Shape</h3>
+        <form id="shapeForm">
+            <label>
+                Type
+                <select id="type">
+                    <option value = "Rectangle">Rectangle</option>
+                    <option value = "Circle">Circle</option>
+                </select>
+            </label>
+            <label>Color
+                <input type="color" id="color">
+            </label>
+            <label>X Coordinate
+                <input type="number" id="x">
+            </label>
+            <label>Y Coordinate
+                <input type="number" id="y">
+            </label>
+            <label>Width
+                <input type="number" id="width">
+            </label>
+            <label>Height/Radius
+                <input type="number" id="height">
+            </label>
+            <input type="submit" value="Create and Add Shape">
+        </form>
+    </div>
+
+
+
+</div>
+
+</body>
+
+
+
+
+
+
+</html>

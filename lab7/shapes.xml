@@ -1,0 +1,29 @@
+<shapes>
+    <shape>
+        <type>rectangle</type>
+        <color>#6495ED</color>
+        <x>50</x>
+        <y>40</y>
+        <width>120</width>
+        <height>60</height>
+    </shape>
+
+    <shape>
+        <type>circle</type>
+        <color>#48D1CC</color>
+        <x>200</x>
+        <y>100</y>
+        <width>0</width>
+        <height>60</height>
+    </shape>
+
+    <shape>
+        <type>rectangle</type>
+        <color>#FFA500</color>
+        <x>90</x>
+        <y>150</y>
+        <width>180</width>
+        <height>40</height>
+    </shape>
+
+</shapes>
