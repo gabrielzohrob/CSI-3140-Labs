@@ -1,32 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById("canvasSpace");
-    const ctx = canvas.getContext("2d");
+document.addEventListener("DOMContentLoaded", function(){
+    var canvas = document.getElementById("canvasSpace");
+    var ctx = canvas.getContext("2d");
 
-    // Global state
-    let shapes = [];
+    var shapes = [];
 
     // Event Listeners
-    document.getElementById("loadButton").addEventListener("click", loadShapesFromXML);
-    document.getElementById("shapeForm").addEventListener("submit", handleCreateShape);
+    document.getElementById("loadButton").addEventListener("click", loadShapesFromXML, false);
+    document.getElementById("shapeForm").addEventListener("submit", handleCreateShape, false);
 
     async function loadShapesFromXML() {
         try {
-            const response = await fetch("shapes.xml");
-            const xmlText = await response.text();
+            var response = await fetch("shapes.xml");
+            var xmlText = await response.text();
 
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlText, "application/xml");
 
-            const shapeNodes = xmlDoc.getElementsByTagName("shape");
-            shapes = []; // Reset the array
+            var shapeNodes = xmlDoc.getElementsByTagName("shape");
+            shapes = [];
 
-            for (let shape of shapeNodes) {
-                const type = shape.getElementsByTagName("type")[0].textContent.toLowerCase();
-                const color = shape.getElementsByTagName("color")[0].textContent;
-                const x = parseInt(shape.getElementsByTagName("x")[0].textContent);
-                const y = parseInt(shape.getElementsByTagName("y")[0].textContent);
-                const width = parseInt(shape.getElementsByTagName("width")[0].textContent);
-                const height = parseInt(shape.getElementsByTagName("height")[0].textContent);
+            for (var shape of shapeNodes) {
+                var type = shape.getElementsByTagName("type")[0].textContent.toLowerCase();
+                var color = shape.getElementsByTagName("color")[0].textContent;
+                var x = parseInt(shape.getElementsByTagName("x")[0].textContent);
+                var y = parseInt(shape.getElementsByTagName("y")[0].textContent);
+                var width = parseInt(shape.getElementsByTagName("width")[0].textContent);
+                var height = parseInt(shape.getElementsByTagName("height")[0].textContent);
 
                 shapes.push({ type, color, x, y, width, height });
             }
@@ -37,23 +36,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Function to handle form submission
     function handleCreateShape(event) {
         event.preventDefault();
 
-        const type = document.getElementById("type").value.toLowerCase();
-        const color = document.getElementById("color").value;
-        const x = parseInt(document.getElementById("x").value);
-        const y = parseInt(document.getElementById("y").value);
-        const width = parseInt(document.getElementById("width").value);
-        const height = parseInt(document.getElementById("height").value);
+        var type = document.getElementById("type").value.toLowerCase();
+        var color = document.getElementById("color").value;
+        var x = parseInt(document.getElementById("x").value);
+        var y = parseInt(document.getElementById("y").value);
+        var width = parseInt(document.getElementById("width").value);
+        var height = parseInt(document.getElementById("height").value);
 
         shapes.push({ type, color, x, y, width, height });
 
         drawAllShapes();
     }
 
-    // Function to draw all shapes on canvas
     function drawAllShapes() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -69,4 +66,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
-});
+}, false);
