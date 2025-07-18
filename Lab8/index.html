@@ -1,13 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Lab 8 Michael and Gabriel</title>
-    <link rel = "stylesheet" href = "styles.css" />
-    <script src = "scripts.js" defer></script>
+  <meta charset="UTF-8" />
+  <title>Restaurant Menu and Orders</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <h1>Restaurant Menu and Orders</h1>
 
+  <!-- Edit Dish Price -->
+  <section>
+    <h2>Edit Dish Price</h2>
+    <form id="edit-price-form">
+      <label>
+        Dish ID
+        <input type="number" name="dishId" required />
+      </label>
+      <label>
+        New Price
+        <input type="number" name="price" step="0.01" required />
+      </label>
+      <button type="submit">Update Price</button>
+    </form>
+  </section>
+
+  <!-- Place a New Order -->
+  <section>
+    <h2>Place an Order</h2>
+    <form id="new-order-form">
+      <label>
+        Customer Name
+        <input type="text" name="customer" required />
+      </label>
+      <label>
+        Select Dish
+        <select name="dish" id="dish-select" required></select>
+      </label>
+      <label>
+        Quantity
+        <input type="number" name="quantity" min="1" required />
+      </label>
+      <button type="submit">Place Order</button>
+    </form>
+  </section>
+
+  <!-- Order History -->
+  <section>
+    <h2>Order History</h2>
+    <table id="orders-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Dish</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Orders will be inserted here -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Import XML Button -->
+  <section>
+    <h2>Import Orders from XML</h2>
+    <button id="import-xml">Import XML Orders</button>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
